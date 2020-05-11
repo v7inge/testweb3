@@ -19,18 +19,18 @@
   <div class="login_window">
 
     <div class="top_menu">
-			<div class="title">Chat by Victor Umanskiy</div>
-		</div>
+		<div class="title">Chat by Victor Umanskiy</div>
+	</div>
 
-    <h2 class="h2-login active"> Sign In </h2>
-    <h2 class="h2-login inactive underlineHover">Sign Up </h2>
+    <h2 class="h2-login active">Log in</h2>
+    <h2 class="h2-login inactive">Sign up</h2>
     
     <p style="color: red;">${errorString}</p>
 
     <form method="POST" action="${pageContext.request.contextPath}/login">
       <input type="text" id="login" name="userName" placeholder="login" value="${user.userName}">
       <input type="text" id="password" name="password" placeholder="password" value="${user.password}">
-      <input type="submit" value="Log In">
+      <input type="submit" id="login_button" value="Log In">
       <div class="checkbox">
       <input class="custom-checkbox" type="checkbox" id="rememberMe" name="rememberMe" value="Y" checked>
       <label for="rememberMe">Remember me</label>
