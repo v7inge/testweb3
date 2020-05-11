@@ -152,4 +152,19 @@ $(document).ready(function(){
         	}
         });
 	});
+	
+	// Changing login type
+	$(".h2-login").click(function() {
+		
+		let h2login = $(".h2-login");
+		h2login.removeClass("active");
+		h2login.addClass("inactive");
+
+		$(this).removeClass("inactive");
+		$(this).addClass("active");
+
+		$("#login_button").val($(this).text());
+		
+	});
+	
 });
