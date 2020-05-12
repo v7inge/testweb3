@@ -106,11 +106,11 @@
 		</dependency>
 	
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
-		<dependency>
+		<!-- <dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>jstl</artifactId>
 		    <version>1.2</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl-api -->
 		<dependency>
