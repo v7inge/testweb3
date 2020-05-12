@@ -17,7 +17,7 @@ public class WebConfig {
    public ServletRegistrationBean<HttpServlet> countryServlet() {
 	   ServletRegistrationBean<HttpServlet> servRegBean = new ServletRegistrationBean<>();
 	   servRegBean.setServlet(new HelloCountryServlet());
-	   servRegBean.addUrlMappings("/");
+	   servRegBean.addUrlMappings("/country");
 	   servRegBean.setLoadOnStartup(1);
 	   return servRegBean;
    }
