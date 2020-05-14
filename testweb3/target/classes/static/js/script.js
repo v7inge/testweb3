@@ -161,6 +161,7 @@ $(document).ready(function() {
             	}
         	}
         });
+		scrollDown();
 	});
 	
 	// Changing login type
