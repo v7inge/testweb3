@@ -36,6 +36,7 @@ function drawMessage(text, date, side) {
 	li.appendChild(d);
 	
 	messages.appendChild(li);
+	scrollDown();
 }
 
 function disconnect(){
@@ -60,43 +61,52 @@ function formatDate(date) {
 	  return day + "." + month + "." + year + " " + hour + ":" + minute;
 }
 
-$(document).ready(function(){
+function sendMessage() {
+	
+	// Preparing data
+	let text = $("#message_input_value").val();
+	let date = new Date();
+	let sender = $("#userName").text();
+	let reciever = $("#contactName").text();
+	let message = {"queryType": "message_sent", "text": text, "sender": sender, "date": date, "reciever": reciever};
+	let url = "/home";
+    let userJson = JSON.stringify(message);
+	
+    if ((reciever == "") || (text == "")) {
+		return;
+	}
+    
+	// Sending message
+	drawMessage(text, date, "right");
+	stompClient.send("/app/direct/" + sender + "/to/" + reciever, {}, userJson);
+	$("#message_input_value").val("");
+	
+	// Sending for DB saving
+    $.ajax
+    ({
+    	type: "POST",
+        data: userJson,
+        url: url,
+        contentType: "application/json; charset=utf-8",
+        scriptCharset: "utf-8"
+    });
+}
+
+function scrollDown() {
+	$("#messages").scrollTop($("#messages")[0].scrollHeight);
+}
+
+$(document).ready(function() {
+	
+	$(document).keypress(function (e) {
+	    if (e.which == 13) {
+	    	sendMessage();
+	    }
+	});
 	
 	// Click on "send" button
 	$("#send_button").click(function() {
-		
-		// Preparing data
-		let text = $("#message_input_value").val();
-		let date = new Date();
-		let sender = $("#userName").text();
-		let reciever = $("#contactName").text();
-		let message = {"queryType": "message_sent", "text": text, "sender": sender, "date": date, "reciever": reciever};
-		let url = "/home";
-        let userJson = JSON.stringify(message);
-		
-        if ((reciever == "") || (text == "")) {
-			return;
-		}
-        
-		// Sending message
-		drawMessage(text, date, "right");
-		stompClient.send("/app/direct/" + sender + "/to/" + reciever, {}, userJson);
-		$("#message_input_value").val("");
-		
-		// Sending for DB saving
-        $.ajax
-        ({
-        	type: "POST",
-            data: userJson,
-            url: url,
-            contentType: "application/json; charset=utf-8",
-            scriptCharset: "utf-8",
-            error: function(e)
-            {
-            	console.log("Не удалось записать сообщение в БД");
-            },
-            success: function(serverData) {  }
-        });
+		sendMessage();
     });
 
 	// Click on contact name

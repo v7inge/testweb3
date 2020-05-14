@@ -22,6 +22,10 @@
 	
 	<div class="invisible" id="userName">${user.userName}</div>
 	<div class="invisible" id="contactName">no contact</div>
+	<!-- 
+	<button onclick="scrollDown()">Test button</button>
+	Some test text
+	-->
 	
 	<div class="chat_window">
 	
