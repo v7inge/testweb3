@@ -71,7 +71,7 @@ $(document).ready(function(){
 		let sender = $("#userName").text();
 		let reciever = $("#contactName").text();
 		let message = {"queryType": "message_sent", "text": text, "sender": sender, "date": date, "reciever": reciever};
-		let url = "http://localhost:8081/home";
+		let url = "/home";
         let userJson = JSON.stringify(message);
 		
         if ((reciever == "") || (text == "")) {
@@ -120,7 +120,7 @@ $(document).ready(function(){
 
 		// Filling data
 		let userData = {"queryType": "contact_clicked", "contact": contactName};
-        let url = "http://localhost:8081/home";
+        let url = "/home";
         let userJson = JSON.stringify(userData);
 		
 		$.ajax
